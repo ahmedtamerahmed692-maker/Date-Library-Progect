@@ -13,26 +13,51 @@ This repository combines two core utilities designed to make working with dates 
 ## 📅 `clsDate` - Advanced Date Management
 
 ### ✅ Core Features
-#### 1. Constructors & Flexibility
-- **System Time**: Initialize dates automatically using the current system date.
-- **String Parsing**: Create date objects directly from formatted strings (e.g., `"15/10/2024"`).
-- **Date Order**: Construct a date based on its day order within a year.
 
-#### 2. Date Arithmetic
-Gracefully increase or decrease dates across various periods:
-- **Short-term**: Days, Weeks, Months.
-- **Long-term**: Years, Decades, Centuries, Millennia.
+#### 🏗️ Constructors & Flexibility
+| Method | Description |
+|--------|-------------|
+| `clsDate()` | Initialize automatically using current system date |
+| `clsDate(string)` | Parse and create date from formatted strings (e.g., `"15/10/2024"`) |
+| `clsDate(Day, Month, Year)` | Create date explicitly using Day, Month, and Year |
+| `clsDate(DateOrder, Year)` | Construct a date based on its day order within a year |
 
-#### 3. Business & Vacation Logic
-- **Weekend & Business Days**: Differentiate between workdays and weekends.
-- **Vacation Calculation**: Determine exact return-to-work dates post-vacation.
+#### ➕➖ Date Arithmetic
+| Method | Description |
+|--------|-------------|
+| `AddOneDay()` / `DecreaseDateByOneDay()` | Increase/Decrease date by 1 day |
+| `AddDays(Days)` | Add a specific number of days to the date |
+| `IncreaseDateByXWeeks(Weeks)` | Increase date by a given number of weeks |
+| `IncreaseDateByXMonths(Months)` | Increase date by a given number of months |
+| `IncreaseDateByXYears(Years)` | Increase date by a given number of years |
+| `IncreaseDateByOneDecade()` | Add 10 years to the date |
+| `IncreaseDateByOneCentury()` | Add 100 years to the date |
 
-#### 4. Formatting & Visualization
-- **Calendar Visualization**: Built-in methods to print fully formatted month and year calendars directly to the console.
+#### 🏢 Business & Vacation Logic
+| Method | Description |
+|--------|-------------|
+| `IsBusinessDay()` | Check if the date is a standard working day |
+| `IsWeekEnd()` | Check if the date falls on a weekend |
+| `CalculateBusinessDays()` | Get total business days between two dates |
+| `CalculateVacationReturnDate()` | Determine exact return-to-work date post-vacation |
 
-#### 5. Advanced Calculations
-- **Age Calculation**: Pinpoint exact age duration in days based on a birthdate.
-- **Validation**: Thorough date validation rules, including dynamic leap-year checks.
+#### 🖨️ Formatting & Visualization
+| Method | Description |
+|--------|-------------|
+| `Print()` | Print date in `DD/MM/YYYY` format |
+| `DateToString()` | Convert date object to string |
+| `PrintMonthCalendar()` | Print a fully formatted month calendar to the console |
+| `PrintYearCalendar()` | Print the entire year's calendar |
+| `DayShortName()` / `MonthShortName()` | Get the short string name of the day or month |
+
+#### 🧮 Advanced Calculations
+| Method | Description |
+|--------|-------------|
+| `IsValid()` | Validate if the date is correct (handles leap years) |
+| `isLeapYear()` | Check if the current year is a leap year |
+| `IsDateBeforeDate2()` | Check if a date comes before another |
+| `GetDifferenceInDays()` | Calculate exact number of days between two dates |
+| `CalculateMyAgeInDays()` | Calculate precise age in days from birthdate |
 
 ---
 
