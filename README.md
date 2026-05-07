@@ -1,65 +1,139 @@
-# C++ Date and String Utility Library 📅🔤
+# 📅🔤 C++ Date and String Utility Library
 
-Welcome to the **C++ Date and String Utility Library**! This repository highlights a powerful, custom-built `clsDate` class designed to handle complex date calculations, calendar printing, and business logic effortlessly in C++. 
+A powerful, custom-built C++ library that extends built-in functionalities. It includes `clsDate` for handling complex date calculations, calendar printing, and business logic effortlessly, along with `clsString`, a text manipulation helper class serving as a foundation for string parsing.
 
-*(Note: This project also includes `clsString`, a text manipulation helper class, which serves as a foundation for string parsing inside `clsDate`.)*
+## 📌 Project Evolution
+This repository combines two core utilities designed to make working with dates and strings in C++ clean, efficient, and object-oriented.
 
-## 🌟 Key Features of `clsDate`
+- **`clsDate`**: A comprehensive date management tool handling everything from basic arithmetic to advanced business logic and leap-year calculations.
+- **`clsString`**: A fast text manipulation helper class to slice, trim, format, and analyze string data.
 
-The `clsDate` class provides a rich set of static and object-oriented methods to manage dates safely and efficiently:
+---
 
-- **Constructors Flexibility**: Initialize dates via system time (Today's date), a formatted string (e.g., `"15/10/2024"`), explicitly via day/month/year, or the day's order in a current year.
-- **Date Arithmetic**: Elegantly increase or decrease dates gracefully. Supported periods span from days, weeks, and months—up to decades, centuries, and millennia.
-- **Business & Vacation Logic**: Differentiate between weekends and business days, calculate the total business days between two dates, or determine a return-to-work date post-vacation.
-- **Calendar Visualization**: Built-in support to print fully formatted month and year calendars directly to the console.
-- **Robust Date Comparisons**: Functions to evaluate if a date is before, after, or equal to another, alongside calculation of precise day differences.
-- **Validation & Leap Year Integration**: Thorough date validation rules, natively supporting leap-year checks dynamically.
-- **Age Calculation**: Simple method to pinpoint exact age duration in days based on a birthdate.
+## 📅 `clsDate` - Advanced Date Management
 
-### `clsString` (Brief Overview)
-A fast and efficient text manipulation helper class used to slice, trim, and format string data, predominantly serving the date class for tasks like string-to-date splitting.
+### ✅ Core Features
+#### 1. Constructors & Flexibility
+- **System Time**: Initialize dates automatically using the current system date.
+- **String Parsing**: Create date objects directly from formatted strings (e.g., `"15/10/2024"`).
+- **Date Order**: Construct a date based on its day order within a year.
 
-## 🚀 Getting Started (Example Usage)
+#### 2. Date Arithmetic
+Gracefully increase or decrease dates across various periods:
+- **Short-term**: Days, Weeks, Months.
+- **Long-term**: Years, Decades, Centuries, Millennia.
 
-Simply include the header files in your C++ project and you're good to go:
+#### 3. Business & Vacation Logic
+- **Weekend & Business Days**: Differentiate between workdays and weekends.
+- **Vacation Calculation**: Determine exact return-to-work dates post-vacation.
+
+#### 4. Formatting & Visualization
+- **Calendar Visualization**: Built-in methods to print fully formatted month and year calendars directly to the console.
+
+#### 5. Advanced Calculations
+- **Age Calculation**: Pinpoint exact age duration in days based on a birthdate.
+- **Validation**: Thorough date validation rules, including dynamic leap-year checks.
+
+---
+
+## 🔤 `clsString` - String Utility Class
+
+### ✅ Core Features
+#### 📏 Basic & Counting
+| Method | Description |
+|--------|-------------|
+| `Length()` | Get string length |
+| `CountWords()` | Count words in a string |
+| `CountLetters()` | Count letters (All/Capital/Small) |
+| `CountVowels()` | Count vowel letters |
+| `IsVowel()` | Check if a character is a vowel |
+
+#### 🔤 Case Manipulation
+| Method | Description |
+|--------|-------------|
+| `UpperFirstLetterOfEachWord()` | Capitalize first letter of each word |
+| `LowerFirstLetterOfEachWord()` | Lowercase first letter of each word |
+| `UpperAllString()` | Convert entire string to uppercase |
+| `LowerAllString()` | Convert entire string to lowercase |
+| `InvertAllLettersCase()` | Invert case of all characters |
+
+#### ✂️ Trimming & Manipulation
+| Method | Description |
+|--------|-------------|
+| `TrimLeft()` / `TrimRight()` / `Trim()` | Remove leading/trailing spaces |
+| `Split()` | Split string by delimiter into a vector |
+| `JoinString()` | Join vector or array into a string |
+| `ReverseWordsInString()` | Reverse word order in string |
+| `ReplaceWord()` | Replace a word with another |
+| `RemovePunctuations()` | Remove all punctuation characters |
+
+---
+
+## 🧠 Key Design Concepts
+**Dual-Method Architecture:**
+Every utility method generally has two versions:
+- **Static**: Works directly on any string/date passed as a parameter.
+- **Normal**: Works inherently on the object's instantiated state.
+
+```cpp
+// Static - pass any string
+clsString::CountWords("Hello World"); // 2
+
+// Normal - works on object value
+clsString str("Hello World");
+str.CountWords(); // 2
+```
+
+---
+
+## 🚀 How to Run (Usage Example)
+
+Include the header files in your C++ project to get started:
 
 ```cpp
 #include <iostream>
 #include "clsDate.h"
+#include "clsString.h"
 
 using namespace std;
 
 int main()
 {
-    // Initialize date with today's system time
+    // --- clsDate Usage ---
     clsDate Today;
     cout << "Today is: ";
     Today.Print();
 
-    // Init from string
     clsDate CustomDate("20/12/2022");
-    cout << "Custom Date: " << CustomDate.DateToString() << endl;
-
-    // Check Business Day
-    if (CustomDate.IsBusinessDay()) {
-        cout << "It's a Business Day!" << endl;
+    if (CustomDate.IsValid()) {
+        cout << "Custom Date: " << CustomDate.DateToString() << endl;
     }
 
-    // Print the full month calendar
     CustomDate.PrintMonthCalendar();
 
-    // Advanced capabilities like Age Calculation
-    clsDate BirthDate("1/1/2000");
-    cout << "Age in Days: " << clsDate::CalculateMyAgeInDays(BirthDate) << endl;
+    // --- clsString Usage ---
+    clsString str("hello world from c++");
+    str.UpperFirstLetterOfEachWord();
+    cout << "\nFormatted String: " << str.Value << endl;
+
+    vector<string> words = str.Split(" ");
+    cout << "Word Count: " << clsString::CountWords(str.Value) << endl;
 
     return 0;
 }
 ```
 
-## 🛠 Compilation Requirements
+---
 
-- A standard C++ Compiler (C++11 or higher).
-- Ensure both `clsDate.h` and `clsString.h` are placed directly in your execution directory.
+## 🗂️ Technical Structure & Compilation
+- **Built With**: C++ 
+- **OOP Principles**: Encapsulation, Static Members, Method Overloading
+- **Compilation**: Requires a standard C++ Compiler (C++11 or higher). Ensure `clsDate.h` and `clsString.h` are in your execution directory.
 
-## 📜 Credits
-This logic and structure is inspired by the C++ OOP & Problem Solving learning tracks provided by **ProgrammingAdvices.com** (Eng. Mohammed Abu-Hadhoud).
+---
+
+## 👨‍💻 Developer
+**Ahmed Tamer**  
+Computer Science Student at New Mansoura University (NMU).
+
+*Credits: Logic and structure inspired by the C++ OOP & Problem Solving learning tracks provided by ProgrammingAdvices.com (Eng. Mohammed Abu-Hadhoud).*
